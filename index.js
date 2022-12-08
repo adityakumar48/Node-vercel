@@ -1,17 +1,14 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8000;
-const axios = require("axios");
+const cors = require("cors");
 
-app.get("/", async (req, res) => {
-  //   try {
-  //     const resData = await axios.get("https://api.ipify.org/?format=json");
-  //     console.log(resData.data.ip);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  console.log(req.ip);
-  res.send("<h1>Hello World</h1>");
+app.set("trust proxy", true);
+app.use(cors());
+
+app.get("/api", async (req, res) => {
+  const ip = req.ip;
+  res.send(ip);
 });
 
 app.listen(PORT, () => {
