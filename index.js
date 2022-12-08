@@ -1,15 +1,16 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8000;
+const axios = require("axios");
 
-app.get("/", (req, res) => {
-  fetch("https://api.ipify.org/?format=json")
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data.ip);
-    });
+app.get("/", async (req, res) => {
+  try {
+    const resData = await axios.get("https://api.ipify.org/?format=json");
+    console.log(resData.data.ip);
+  } catch (err) {
+    console.log(err);
+  }
+
   res.send("<h1>Hello World</h1>");
 });
 
