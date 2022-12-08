@@ -4,13 +4,13 @@ const PORT = process.env.PORT || 8000;
 const axios = require("axios");
 
 app.get("/", async (req, res) => {
-  try {
-    const resData = await axios.get("https://api.ipify.org/?format=json");
-    console.log(resData.data.ip);
-  } catch (err) {
-    console.log(err);
-  }
-
+  //   try {
+  //     const resData = await axios.get("https://api.ipify.org/?format=json");
+  //     console.log(resData.data.ip);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  console.log(req.ip);
   res.send("<h1>Hello World</h1>");
 });
 
